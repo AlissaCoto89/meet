@@ -25,7 +25,7 @@
       <button id="getCode">Get OAuth URL</button>
       <p id="result"></p>
       <a id="authURL" href target="_blank">Click to authorize</a>
-      
+
       <h4>Step 2: Get your code and exchange for an access token</h4>
       <p>
         After you’re redirected back to your Meet app on GitHub, copy the code
@@ -72,7 +72,7 @@
 
       getAccessToken.onclick = function () {
         let code = codeValue.value;
-        
+
         if (decodeURIComponent(code) === code) {
           code = encodeURIComponent(codeValue.value);
         }
@@ -88,7 +88,8 @@
 
       const getEvents = document.getElementById("getEvents");
       const events = document.getElementById("events");
-      const getCalendarEvents = " https://ubkom4vrql.execute-api.us-east-1.amazonaws.com/dev/api/get-events";
+      const getCalendarEvents =
+        " https://ubkom4vrql.execute-api.us-east-1.amazonaws.com/dev/api/get-events";
 
       getEvents.onclick = function () {
         const { access_token } = JSON.parse(accessTokenElement.innerText);
