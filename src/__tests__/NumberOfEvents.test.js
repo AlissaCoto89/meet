@@ -8,23 +8,23 @@ describe("<NumberOfEvents /> component", () => {
     NumberOfEventsWrapper = shallow(<NumberOfEvents />);
   });
 
-  test("render element", () => {
+  test("Render element", () => {
     expect(NumberOfEventsWrapper.find(".number-of-events")).toHaveLength(1);
   });
 
-  test("render input for number of events", () => {
+  test("Render input for number of events", () => {
     expect(NumberOfEventsWrapper.find(".number-of-events-input")).toHaveLength(
       1
     );
   });
 
-  test("render default input for number of events of 32", () => {
+  test("Render default input for number of events of 32", () => {
     expect(
       NumberOfEventsWrapper.find(".number-of-events-input").prop("value")
     ).toBe("32");
   });
 
-  test("render change of input for number of events to 16", () => {
+  test("Render change of input for number of events to 16", () => {
     const eventObject = { target: { value: "16" } };
     NumberOfEventsWrapper.find(".number-of-events-input").simulate(
       "change",
