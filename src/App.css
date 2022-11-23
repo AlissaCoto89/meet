@@ -6,6 +6,8 @@
 
 .App * {
   box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
 }
 
 ul {

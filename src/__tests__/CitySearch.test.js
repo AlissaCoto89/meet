@@ -78,7 +78,7 @@ describe("<CitySearch /> component", () => {
     });
   });
 
-  test("selecting a suggestion should hide the suggestions list", () => {
+  test("Selecting a suggestion should hide the suggestions list", () => {
     CitySearchWrapper.setState({
       query: "Berlin",
       showSuggestions: undefined,
