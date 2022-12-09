@@ -61,7 +61,6 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Meet App</h1>
-        <h4>Choose your nearest city</h4>
         <div className="WarningAlert">
           {!navigator.onLine && (
             <WarningAlert
@@ -71,8 +70,6 @@ class App extends Component {
             />
           )}
         </div>
-
-        <EventList events={this.state.events} />
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}
@@ -81,6 +78,7 @@ class App extends Component {
           numberOfEvents={numberOfEvents}
           updateEvents={this.updateEvents}
         />
+        <EventList events={this.state.events} />
         <WelcomeScreen
           showWelcomeScreen={this.state.showWelcomeScreen}
           getAccessToken={() => {
