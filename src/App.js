@@ -3,8 +3,10 @@ import "./App.css";
 import CitySearch from "./CitySearch";
 import EventList from "./EventList";
 import NumberOfEvents from "./NumberOfEvents";
-import { getEvents, extractLocations } from "./api";
+import WelcomeScreen from "./WelcomeScreen";
+import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 import "./nprogress.css";
+import { WarningAlert } from "./Alert";
 
 class App extends Component {
   state = {
@@ -12,6 +14,7 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     selectedLocation: "all",
+    showWelcomeScreen: undefined,
   };
 
   updateEvents = (location, eventCount) => {
@@ -31,13 +34,20 @@ class App extends Component {
     });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
-      }
-    });
+    const accessToken = localStorage.getItem("access_token");
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({ events, locations: extractLocations(events) });
+        }
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -46,8 +56,22 @@ class App extends Component {
 
   render() {
     const { numberOfEvents } = this.state;
+    if (this.state.showWelcomeScreen === undefined)
+      return <div className="App" />;
     return (
       <div className="App">
+        <h1>Meet App</h1>
+        <h4>Choose your nearest city</h4>
+        <div className="WarningAlert">
+          {!navigator.onLine && (
+            <WarningAlert
+              text={
+                "You are currently offline. The list of events may not be up-to-date."
+              }
+            />
+          )}
+        </div>
+
         <EventList events={this.state.events} />
         <CitySearch
           locations={this.state.locations}
@@ -56,6 +80,12 @@ class App extends Component {
         <NumberOfEvents
           numberOfEvents={numberOfEvents}
           updateEvents={this.updateEvents}
+        />
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
         />
       </div>
     );
