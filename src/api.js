@@ -18,23 +18,8 @@ export const checkToken = async (accessToken) => {
   return result;
 };
 
-const removeQuery = () => {
-  if (window.history.pushState && window.location.pathname) {
-    var newurl =
-      window.location.protocol +
-      "//" +
-      window.location.host +
-      window.location.pathname;
-    window.history.pushState("", "", newurl);
-  } else {
-    newurl = window.location.protocol + "//" + window.location.host;
-    window.history.pushState("", "", newurl);
-  }
-};
-
 export const getEvents = async () => {
   NProgress.start();
-
   if (window.location.href.startsWith("http://localhost")) {
     NProgress.done();
     return mockData;
@@ -65,23 +50,6 @@ export const getEvents = async () => {
   }
 };
 
-const getToken = async (code) => {
-  const encodeCode = encodeURIComponent(code);
-  const { access_token } = await fetch(
-    "https://ubkom4vrql.execute-api.us-east-1.amazonaws.com/dev/api/token" +
-      "/" +
-      encodeCode
-  )
-    .then((res) => {
-      return res.json();
-    })
-    .catch((error) => error);
-
-  access_token && localStorage.setItem("access_token", access_token);
-
-  return access_token;
-};
-
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem("access_token");
   const tokenCheck = accessToken && (await checkToken(accessToken));
@@ -100,4 +68,35 @@ export const getAccessToken = async () => {
     return code && getToken(code);
   }
   return accessToken;
+};
+
+const getToken = async (code) => {
+  const encodeCode = encodeURIComponent(code);
+  const { access_token } = await fetch(
+    "https://ubkom4vrql.execute-api.us-east-1.amazonaws.com/dev/api/token" +
+      "/" +
+      encodeCode
+  )
+    .then((res) => {
+      return res.json();
+    })
+    .catch((error) => error);
+
+  access_token && localStorage.setItem("access_token", access_token);
+
+  return access_token;
+};
+
+const removeQuery = () => {
+  if (window.history.pushState && window.location.pathname) {
+    var newurl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.pushState("", "", newurl);
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
+  }
 };
