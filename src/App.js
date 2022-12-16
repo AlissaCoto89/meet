@@ -85,7 +85,7 @@ class App extends Component {
     if (showWelcomeScreen === undefined) return <div className="App" />;
     return (
       <div className="App">
-        <h1>Meet App</h1>
+        <h1>MEET</h1>
         <div className="WarningAlert">
           {!navigator.onLine && (
             <WarningAlert
