@@ -57,3 +57,5 @@ Then an error message should be displayed, informing the user that internet acce
 Given the user hasn’t searched for any city
 When the user opens the app
 Then a chart with upcoming events by city should by shown
+![meet](https://user-images.githubusercontent.com/109038162/208187942-8424dafd-0b6e-4cee-a345-211d52e5a818.png)
+![meet2](https://user-images.githubusercontent.com/109038162/208201008-c5f76b42-cb24-4363-a601-cddbf6fec2db.png)
