@@ -1,8 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 
 body {
-    color: #fff;
-    background-color: #2a3c66;
+    background-color: #ccc;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -20,8 +19,8 @@ code {
 
 .App * {
     box-sizing: border-box;
-    /*width: 100%;
-    padding: 5px */
+    width: 100%;
+    padding: 5px
 }
 
 h1 {
@@ -51,12 +50,11 @@ input[type=text] {
     padding: 8px 6px 8px 10px;
     border-radius: 4px;
     outline: none;
-    border: 1px solid #ff8c00;
+    border: 1px solid #ccc;
     font-size: 14px;
     line-height: 20px;
     align-self: center;
-    height: 38px;
-    margin-bottom: 1rem;
+    height: 38px
 }
 
 .city {
@@ -75,11 +73,10 @@ input[type=text] {
 
 .suggestions {
     width: 250px;
-    position: absolute;
+    position: relative;
     z-index: 2;
     align-self: center;
     margin: 0;
-    top: 43px;
     font-size: 14px;
     box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, .75)
 }
@@ -87,7 +84,7 @@ input[type=text] {
 .suggestions>li {
     text-align: left;
     padding: 8px 6px 8px 10px;
-    background-color: #40495e;
+    background-color: #eee;
     cursor: default
 }
 
@@ -97,22 +94,16 @@ input[type=text] {
 }
 
 .suggestions>li:hover {
-    background-color: #4682b4;
-    cursor: pointer;
+    background-color: #bcdcdb
 }
 
 .event {
     padding: 10px 10px 35px;
     margin-bottom: 10px;
     text-align: left;
-    border: 1px solid #ff8c00;
+    border: 1px solid #ccc;
     border-radius: 4px;
     position: relative
-}
-
-.event:hover {
-    background-color: #4682b4;
-    cursor: pointer;
 }
 
 .summary {
@@ -121,15 +112,14 @@ input[type=text] {
 
 .hide-details,
 .show-details {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
+    position: relative;
     padding: 5px 8px;
-    /*border: 1px solid #ccc;*/
+    border: 1px solid #ccc;
     border-radius: 4px;
     outline: none;
     cursor: pointer;
-    background-color: #ff8c00;
+    color: #000;
+    background-color: #9297c4
 }
 
 .name {
@@ -152,7 +142,7 @@ input[type=text] {
 }
 
 .number-of-events {
-    width: 200px;
+    width: 300px;
     margin: 20px auto;
     text-align: center
 }
@@ -172,8 +162,11 @@ input[type=text] {
 .Alert,
 .data-vis-wrapper {
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    flex-direction: column
+}
+
+.data-vis-wrapper {
+    align-items: center
 }
 
 .data-vis-wrapper .recharts-responsive-container {
@@ -207,11 +200,7 @@ label {
     width: 100%;
     height: 100%;
     top: 0;
-    color: white;
-    background: #2a3c66;
-    text-align: center;
-    padding-top: 5rem;
-    justify-content: center;
+    background: #fff
 }
 
 .login-button {
@@ -221,7 +210,7 @@ label {
     background: #fff;
     border: 4px solid #494949;
     display: inline-block;
-    transition: all 0.4s ease 0s;
+    transition: all .4s ease 0s;
     min-width: 10rem;
     margin: 1rem
 }
